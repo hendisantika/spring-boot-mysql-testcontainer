@@ -1,10 +1,14 @@
 package com.hendisantika.controller;
 
+import com.hendisantika.universum.Hero;
 import com.hendisantika.universum.HeroClassicJpaRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Collection;
 
 /**
  * Created by IntelliJ IDEA.
@@ -37,5 +41,13 @@ public class HeroController {
         model.addAttribute("ipAddress", inspectLocalHost());
 
         return "hero/hero.list.html";
+    }
+
+    private Collection<Hero> collectHeros(String search) {
+        if (StringUtils.isBlank(search) || StringUtils.isEmpty(search)) {
+            return heroRepository.allHeros();
+        } else {
+            return heroRepository.findHerosBySearchCriteria(search);
+        }
     }
 }
