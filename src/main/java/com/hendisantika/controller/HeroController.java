@@ -7,6 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
@@ -56,6 +58,12 @@ public class HeroController {
     public String newHero(Model model) {
         model.addAttribute("newHero", new NewHeroModel());
         return "hero/hero.new.html";
+    }
+
+    @PostMapping("/hero/new")
+    public String addNewHero(@ModelAttribute("newHero") NewHeroModel newHeroModel) {
+        heroRepository.addHero(newHeroModel.getHero());
+        return "redirect:/hero/list";
     }
 
 }
