@@ -44,4 +44,13 @@ class HeroClassicJpaRepositoryIT {
 
         assertThat(heros).hasSize(numberHeroes + 2);
     }
+
+    @Test
+    void findHeroByCriteria() {
+        repositoryUnderTest.addHero(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
+
+        Collection<Hero> heroes = repositoryUnderTest.findHerosBySearchCriteria("Batman");
+
+        assertThat(heroes).contains(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
+    }
 }
