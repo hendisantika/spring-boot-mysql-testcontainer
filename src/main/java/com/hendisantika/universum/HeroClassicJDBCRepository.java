@@ -3,6 +3,8 @@ package com.hendisantika.universum;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import javax.sql.DataSource;
+
 /**
  * Created by IntelliJ IDEA.
  * Project : spring-boot-mysql-testcontainer
@@ -17,4 +19,13 @@ import org.springframework.stereotype.Repository;
 public class HeroClassicJDBCRepository {
 
     private final JdbcTemplate jdbcTemplate;
+
+    public HeroClassicJDBCRepository(DataSource dataSource) {
+        jdbcTemplate = new JdbcTemplate(dataSource);
+    }
+
+    public void addHero(Hero hero) {
+        jdbcTemplate.update("insert into hero (city, name, universum) values (?,?,?)",
+                hero.getCity(), hero.getName(), hero.getUniversum().name());
+    }
 }
