@@ -1,4 +1,4 @@
-package com.hendisantika.niversum;
+package com.hendisantika.universum;
 
 /**
  * Created by IntelliJ IDEA.
