@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collection;
 
 /**
  * Created by IntelliJ IDEA.
@@ -25,5 +26,9 @@ public class HeroClassicJpaRepository {
     @Transactional
     public void addHero(Hero hero) {
         em.persist(hero);
+    }
+
+    public Collection<Hero> allHeros() {
+        return em.createQuery("Select hero FROM Hero hero", Hero.class).getResultList();
     }
 }
