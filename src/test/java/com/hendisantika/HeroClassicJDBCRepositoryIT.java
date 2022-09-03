@@ -1,9 +1,18 @@
 package com.hendisantika;
 
+import com.hendisantika.universum.ComicUniversum;
+import com.hendisantika.universum.Hero;
 import com.hendisantika.universum.HeroClassicJDBCRepository;
+import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.ext.ScriptUtils;
+import org.testcontainers.jdbc.JdbcDatabaseDelegate;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
+import java.util.Collection;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,4 +31,15 @@ class HeroClassicJDBCRepositoryIT {
 
     private HeroClassicJDBCRepository repositoryUnderTest;
 
+    @Test
+    void testInteractionWithDatabase() {
+        ScriptUtils.runInitScript(new JdbcDatabaseDelegate(database, ""), "ddl.sql");
+        repositoryUnderTest = new HeroClassicJDBCRepository(dataSource());
+
+        repositoryUnderTest.addHero(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
+
+        Collection<Hero> heroes = repositoryUnderTest.allHeros();
+
+        assertThat(heroes).hasSize(1);
+    }
 }
