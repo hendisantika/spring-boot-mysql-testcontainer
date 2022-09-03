@@ -3,6 +3,8 @@ package com.hendisantika.controller;
 import com.hendisantika.universum.Hero;
 import com.hendisantika.universum.HeroSpringDataJpaRepository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -31,5 +33,10 @@ public class HeroRestController {
         }
 
         return heroRepository.findHerosBySearchCriteria(searchCriteria);
+    }
+
+    @PostMapping("hero")
+    public void addNewHero(@RequestBody Hero hero) {
+        heroRepository.save(hero);
     }
 }
