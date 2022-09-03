@@ -1,11 +1,18 @@
 package com.hendisantika;
 
+import com.hendisantika.universum.ComicUniversum;
+import com.hendisantika.universum.Hero;
 import com.hendisantika.universum.HeroClassicJpaRepository;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+
+import java.util.Collection;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by IntelliJ IDEA.
@@ -25,4 +32,16 @@ class HeroClassicJpaRepositoryIT {
 
     @Autowired
     private HeroClassicJpaRepository repositoryUnderTest;
+
+    @Test
+    void findAllHeroes() {
+        int numberHeroes = repositoryUnderTest.allHeros().size();
+
+        repositoryUnderTest.addHero(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
+        repositoryUnderTest.addHero(new Hero("Superman", "Metropolis", ComicUniversum.DC_COMICS));
+
+        Collection<Hero> heros = repositoryUnderTest.allHeros();
+
+        assertThat(heros).hasSize(numberHeroes + 2);
+    }
 }
