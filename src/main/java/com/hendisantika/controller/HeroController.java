@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
 import java.util.Collection;
 
 /**
@@ -66,4 +68,11 @@ public class HeroController {
         return "redirect:/hero/list";
     }
 
+    private String inspectLocalHost() {
+        try {
+            return Inet4Address.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
