@@ -2,6 +2,7 @@ package com.hendisantika.controller;
 
 import com.hendisantika.universum.Hero;
 import com.hendisantika.universum.HeroClassicJpaRepository;
+import com.hendisantika.universum.NewHeroModel;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,4 +51,11 @@ public class HeroController {
             return heroRepository.findHerosBySearchCriteria(search);
         }
     }
+
+    @GetMapping("/hero/new")
+    public String newHero(Model model) {
+        model.addAttribute("newHero", new NewHeroModel());
+        return "hero/hero.new.html";
+    }
+
 }
