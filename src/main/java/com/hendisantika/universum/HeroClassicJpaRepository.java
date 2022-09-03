@@ -31,4 +31,13 @@ public class HeroClassicJpaRepository {
     public Collection<Hero> allHeros() {
         return em.createQuery("Select hero FROM Hero hero", Hero.class).getResultList();
     }
+
+    public Collection<Hero> findHerosBySearchCriteria(String searchCriteria) {
+        return em.createQuery("SELECT hero FROM Hero hero " +
+                                "where hero.city LIKE :searchCriteria OR " +
+                                "hero.name LIKE :searchCriteria OR " +
+                                "hero.universum = :searchCriteria",
+                        Hero.class)
+                .setParameter("searchCriteria", searchCriteria).getResultList();
+    }
 }
