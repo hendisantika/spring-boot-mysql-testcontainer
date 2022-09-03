@@ -1,6 +1,7 @@
 package com.hendisantika.universum;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,4 +22,8 @@ public class HeroClassicJpaRepository {
     @PersistenceContext
     private EntityManager em;
 
+    @Transactional
+    public void addHero(Hero hero) {
+        em.persist(hero);
+    }
 }
