@@ -38,4 +38,13 @@ class HeroClassicJpaRepositoryReuseDatabaseIT extends DatabaseBaseTest {
 
         assertThat(heros).hasSize(numberHeroes + 2);
     }
+
+    @Test
+    void findHeroByCriteria() {
+        repositoryUnderTest.addHero(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
+
+        Collection<Hero> heros = repositoryUnderTest.findHerosBySearchCriteria("Batman");
+
+        assertThat(heros).contains(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
+    }
 }
