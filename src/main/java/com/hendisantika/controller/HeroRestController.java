@@ -1,6 +1,8 @@
 package com.hendisantika.controller;
 
+import com.hendisantika.universum.Hero;
 import com.hendisantika.universum.HeroSpringDataJpaRepository;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,5 +22,14 @@ public class HeroRestController {
 
     public HeroRestController(HeroSpringDataJpaRepository heroRepository) {
         this.heroRepository = heroRepository;
+    }
+
+    @GetMapping("heros")
+    public Iterable<Hero> allHeros(String searchCriteria) {
+        if (searchCriteria == null || searchCriteria.equals("")) {
+            return heroRepository.findAll();
+        }
+
+        return heroRepository.findHerosBySearchCriteria(searchCriteria);
     }
 }
