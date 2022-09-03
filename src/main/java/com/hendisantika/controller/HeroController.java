@@ -4,6 +4,7 @@ import com.hendisantika.universum.HeroClassicJpaRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by IntelliJ IDEA.
@@ -30,4 +31,11 @@ public class HeroController {
         return "hero/hero.search.html";
     }
 
+    @GetMapping("/hero/list")
+    public String viewHeros(@RequestParam(value = "search", required = false) String search, Model model) {
+        model.addAttribute("heros", collectHeros(search));
+        model.addAttribute("ipAddress", inspectLocalHost());
+
+        return "hero/hero.list.html";
+    }
 }
