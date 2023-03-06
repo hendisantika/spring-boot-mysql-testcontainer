@@ -1,12 +1,11 @@
 package com.hendisantika.universum;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import java.util.Objects;
 
 /**
@@ -21,7 +20,6 @@ import java.util.Objects;
  */
 @Data
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
 public class Hero {
 
@@ -36,6 +34,13 @@ public class Hero {
     private ComicUniversum universum;
 
     public Hero(String name, String city, ComicUniversum universum) {
+        this.name = name;
+        this.city = city;
+        this.universum = universum;
+    }
+
+    public Hero(Long id, String name, String city, ComicUniversum universum) {
+        this.id = id;
         this.name = name;
         this.city = city;
         this.universum = universum;

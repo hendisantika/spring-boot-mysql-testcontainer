@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class HeroRestControllerIT {
 
     @Container
-    private static final MySQLContainer database = new MySQLContainer();
+    private static final MySQLContainer database = new MySQLContainer(MySQLTestImages.MYSQL_80_IMAGE);
 
     @Autowired
     private MockMvc mockMvc;

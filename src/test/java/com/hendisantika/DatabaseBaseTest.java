@@ -15,7 +15,7 @@ import org.testcontainers.containers.MySQLContainer;
  * To change this template use File | Settings | File Templates.
  */
 public abstract class DatabaseBaseTest {
-    static final MySQLContainer DATABASE = new MySQLContainer();
+    static final MySQLContainer DATABASE = new MySQLContainer(MySQLTestImages.MYSQL_80_IMAGE);
 
     static {
         DATABASE.start();

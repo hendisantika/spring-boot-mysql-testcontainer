@@ -30,7 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Testcontainers
 class HeroClassicJpaRepositoryIT {
     @Container
-    private static final MySQLContainer database = new MySQLContainer();
+    private static final MySQLContainer database = new MySQLContainer(MySQLTestImages.MYSQL_80_IMAGE);
 
     @Autowired
     private HeroClassicJpaRepository repositoryUnderTest;
