@@ -5,6 +5,7 @@ import com.hendisantika.universum.Hero;
 import com.hendisantika.universum.HeroClassicJDBCRepository;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import com.sun.istack.NotNull;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testcontainers.containers.MySQLContainer;
 import org.testcontainers.ext.ScriptUtils;
@@ -34,16 +35,21 @@ class HeroClassicJDBCRepositoryIT {
 
     private HeroClassicJDBCRepository repositoryUnderTest;
 
+    @BeforeEach
+    void setUp() {
+        ScriptUtils.runInitScript(new JdbcDatabaseDelegate(database, ""), "ddl.sql");
+        ScriptUtils.runInitScript(new JdbcDatabaseDelegate(database, ""), "delete.sql");
+    }
+
     @Test
     void testInteractionWithDatabase() {
-        ScriptUtils.runInitScript(new JdbcDatabaseDelegate(database, ""), "ddl.sql");
         repositoryUnderTest = new HeroClassicJDBCRepository(dataSource());
-
         repositoryUnderTest.addHero(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
+        repositoryUnderTest.addHero(new Hero("Robocop", "Detroit City", ComicUniversum.DC_COMICS));
 
-        Collection<Hero> heroes = repositoryUnderTest.allHeros();
+        Collection<Hero> heroes = repositoryUnderTest.allHeroes();
 
-        assertThat(heroes).hasSize(1);
+        assertThat(heroes).hasSize(2);
     }
 
     @NotNull
