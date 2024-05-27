@@ -41,7 +41,7 @@ class HeroClassicJDBCRepositoryIT {
 
         repositoryUnderTest.addHero(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
 
-        Collection<Hero> heroes = repositoryUnderTest.allHeros();
+        Collection<Hero> heroes = repositoryUnderTest.allHeroes();
 
         assertThat(heroes).hasSize(1);
     }

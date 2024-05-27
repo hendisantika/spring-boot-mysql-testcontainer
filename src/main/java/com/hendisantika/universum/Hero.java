@@ -2,6 +2,7 @@ package com.hendisantika.universum;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,7 +25,9 @@ import java.util.Objects;
 public class Hero {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hero_generator")
+//    @SequenceGenerator(name = "hero_generator", sequenceName = "hero_seq", allocationSize = 1)
     private Long id;
 
     private String name;

@@ -1,4 +1,4 @@
-create table hero
+CREATE TABLE hero
 (
     id        bigint AUTO_INCREMENT PRIMARY KEY,
     city      varchar(255),

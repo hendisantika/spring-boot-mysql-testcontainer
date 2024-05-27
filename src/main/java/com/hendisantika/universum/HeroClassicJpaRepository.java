@@ -25,14 +25,18 @@ public class HeroClassicJpaRepository {
 
     @Transactional
     public void addHero(Hero hero) {
+//        hero.setId(1L);
+//        hero.setName("IRON MAN");
+//        hero.setUniversum(ComicUniversum.MARVEL);
+//        hero.setCity("NEW YORK");
         em.persist(hero);
     }
 
-    public Collection<Hero> allHeros() {
+    public Collection<Hero> allHeroes() {
         return em.createQuery("Select hero FROM Hero hero", Hero.class).getResultList();
     }
 
-    public Collection<Hero> findHerosBySearchCriteria(String searchCriteria) {
+    public Collection<Hero> findHeroesBySearchCriteria(String searchCriteria) {
         return em.createQuery("SELECT hero FROM Hero hero " +
                                 "where hero.city LIKE :searchCriteria OR " +
                                 "hero.name LIKE :searchCriteria OR " +

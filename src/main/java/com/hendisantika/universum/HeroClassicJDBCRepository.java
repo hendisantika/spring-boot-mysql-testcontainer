@@ -30,7 +30,7 @@ public class HeroClassicJDBCRepository {
                 hero.getCity(), hero.getName(), hero.getUniversum().name());
     }
 
-    public Collection<Hero> allHeros() {
+    public Collection<Hero> allHeroes() {
         return jdbcTemplate.query("select * From hero",
                 (resultSet, i) -> new Hero(resultSet.getString("name"),
                         resultSet.getString("city"),

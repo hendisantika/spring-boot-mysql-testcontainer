@@ -42,17 +42,17 @@ public class HeroController {
 
     @GetMapping("/hero/list")
     public String viewHeros(@RequestParam(value = "search", required = false) String search, Model model) {
-        model.addAttribute("heros", collectHeros(search));
+        model.addAttribute("heros", collectHeroes(search));
         model.addAttribute("ipAddress", inspectLocalHost());
 
         return "hero/hero.list.html";
     }
 
-    private Collection<Hero> collectHeros(String search) {
+    private Collection<Hero> collectHeroes(String search) {
         if (StringUtils.isBlank(search) || StringUtils.isEmpty(search)) {
-            return heroRepository.allHeros();
+            return heroRepository.allHeroes();
         } else {
-            return heroRepository.findHerosBySearchCriteria(search);
+            return heroRepository.findHeroesBySearchCriteria(search);
         }
     }
 
