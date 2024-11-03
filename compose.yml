@@ -1,0 +1,11 @@
+services:
+  db:
+    image: mysql:9.1.0
+    container_name: mysql910
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_DATABASE=heroesDB
+      - MYSQL_ROOT_PASSWORD=53cret
+    volumes:
+      - ./mysql910:/var/lib/mysql
