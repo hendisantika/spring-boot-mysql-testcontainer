@@ -17,7 +17,7 @@ class SpringBootMysqlTestcontainerApplicationTests {
     private static final MySQLContainer<?> mySQLContainer;
 
     static {
-        mySQLContainer = (MySQLContainer<?>) new MySQLContainer("mysql:latest")
+        mySQLContainer = (MySQLContainer<?>) new MySQLContainer("mysql:9.1.0")
                 .withDatabaseName("demo")
                 .withUsername("root")
                 .withPassword("root");

@@ -19,7 +19,7 @@ import java.util.List;
 public interface HeroSpringDataJpaRepository extends CrudRepository<Hero, Long> {
 
     @Query("SELECT hero FROM Hero hero where hero.city LIKE :searchCriteria OR hero.name LIKE :searchCriteria OR hero.universum = :searchCriteria")
-    List<Hero> findHerosBySearchCriteria(@Param("searchCriteria") String searchCriteria);
+    List<Hero> findHeroesBySearchCriteria(@Param("searchCriteria") String searchCriteria);
 
 }
 

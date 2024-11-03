@@ -27,12 +27,12 @@ public class HeroRestController {
     }
 
     @GetMapping("heros")
-    public Iterable<Hero> allHeros(String searchCriteria) {
+    public Iterable<Hero> allHeroes(String searchCriteria) {
         if (searchCriteria == null || searchCriteria.equals("")) {
             return heroRepository.findAll();
         }
 
-        return heroRepository.findHerosBySearchCriteria(searchCriteria);
+        return heroRepository.findHeroesBySearchCriteria(searchCriteria);
     }
 
     @PostMapping("hero")

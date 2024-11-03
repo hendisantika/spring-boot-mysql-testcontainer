@@ -29,22 +29,22 @@ class HeroClassicJpaRepositoryReuseDatabaseIT extends DatabaseBaseTest {
 
     @Test
     void findAllHeroes() {
-        int numberHeroes = repositoryUnderTest.allHeros().size();
+        int numberHeroes = repositoryUnderTest.allHeroes().size();
 
         repositoryUnderTest.addHero(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
         repositoryUnderTest.addHero(new Hero("Superman", "Metropolis", ComicUniversum.DC_COMICS));
 
-        Collection<Hero> heros = repositoryUnderTest.allHeros();
+        Collection<Hero> heroes = repositoryUnderTest.allHeroes();
 
-        assertThat(heros).hasSize(numberHeroes + 2);
+        assertThat(heroes).hasSize(numberHeroes + 2);
     }
 
     @Test
     void findHeroByCriteria() {
         repositoryUnderTest.addHero(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
 
-        Collection<Hero> heros = repositoryUnderTest.findHerosBySearchCriteria("Batman");
+        Collection<Hero> heroes = repositoryUnderTest.findHeroesBySearchCriteria("Batman");
 
-        assertThat(heros).contains(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
+        assertThat(heroes).contains(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
     }
 }

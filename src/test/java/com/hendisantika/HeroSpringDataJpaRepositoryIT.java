@@ -32,7 +32,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Testcontainers
 class HeroSpringDataJpaRepositoryIT {
     @Container
-    private static final MySQLContainer database = new MySQLContainer(MySQLTestImages.MYSQL_80_IMAGE);
+    private static final MySQLContainer database = new MySQLContainer(MySQLTestImages.MYSQL_910_IMAGE);
 
     @Autowired
     private HeroSpringDataJpaRepository repositoryUnderTest;
@@ -41,7 +41,7 @@ class HeroSpringDataJpaRepositoryIT {
     void findHeroesBySearchCriteria() {
         repositoryUnderTest.save(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
 
-        Collection<Hero> heroes = repositoryUnderTest.findHerosBySearchCriteria("Batman");
+        Collection<Hero> heroes = repositoryUnderTest.findHeroesBySearchCriteria("Batman");
 
         assertThat(heroes).hasSize(1).contains(new Hero("Batman", "Gotham City", ComicUniversum.DC_COMICS));
     }
