@@ -2,6 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+mysql910
 
 ### STS ###
 .apt_generated
@@ -31,3 +32,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Local data / OS ###
+mysql910/
+.DS_Store
