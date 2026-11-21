@@ -36,7 +36,7 @@ public class HeroClassicJpaRepository {
         return em.createQuery("SELECT hero FROM Hero hero " +
                                 "where hero.city LIKE :searchCriteria OR " +
                                 "hero.name LIKE :searchCriteria OR " +
-                                "hero.universum = :searchCriteria",
+                                "cast(hero.universum as String) = :searchCriteria",
                         Hero.class)
                 .setParameter("searchCriteria", searchCriteria).getResultList();
     }

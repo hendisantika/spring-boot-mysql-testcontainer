@@ -79,10 +79,10 @@ Useful URLs:
 Tests start a throwaway MySQL container through Testcontainers, so Docker must be running.
 
 ```bash
-# Unit phase (what CI runs)
+# Unit tests only (Surefire)
 ./mvnw -B package
 
-# Unit + integration tests (*IT.java via maven-failsafe-plugin)
+# Unit + integration tests (*IT.java via maven-failsafe-plugin) — what CI runs
 ./mvnw -B verify
 ```
 
@@ -94,7 +94,7 @@ Tests start a throwaway MySQL container through Testcontainers, so Docker must b
 GitHub Actions workflow: [`.github/workflows/maven.yml`](.github/workflows/maven.yml)
 
 - Runs on every push / pull request to `main` (and manually via *workflow_dispatch*).
-- Builds with **JDK 25 (Temurin)** and caches Maven dependencies.
+- Builds with **JDK 25 (Temurin)**, caches Maven dependencies and runs unit + integration tests (`mvn verify`).
 - Testcontainers uses the Docker daemon of the GitHub runner by default.
   [Testcontainers Cloud](https://testcontainers.com/cloud/) is opt-in: set the repository variable
   `USE_TESTCONTAINERS_CLOUD=true` and the `TC_CLOUD_TOKEN` secret.
