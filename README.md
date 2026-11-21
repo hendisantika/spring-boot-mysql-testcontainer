@@ -95,8 +95,9 @@ GitHub Actions workflow: [`.github/workflows/maven.yml`](.github/workflows/maven
 
 - Runs on every push / pull request to `main` (and manually via *workflow_dispatch*).
 - Builds with **JDK 25 (Temurin)** and caches Maven dependencies.
-- Uses [Testcontainers Cloud](https://testcontainers.com/cloud/) when the `TC_CLOUD_TOKEN`
-  secret is available; otherwise (e.g. Dependabot or fork PRs) it falls back to the runner's Docker.
+- Testcontainers uses the Docker daemon of the GitHub runner by default.
+  [Testcontainers Cloud](https://testcontainers.com/cloud/) is opt-in: set the repository variable
+  `USE_TESTCONTAINERS_CLOUD=true` and the `TC_CLOUD_TOKEN` secret.
 - On pushes to `main`, submits the Maven dependency graph to GitHub for better Dependabot alerts.
 
 ## Dependency Updates

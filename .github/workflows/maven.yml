@@ -39,11 +39,12 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    # Testcontainers Cloud is used only when the token is available.
-    # Pull requests from forks / Dependabot do not receive repository secrets,
-    # so they fall back to the Docker daemon provided by the GitHub runner.
+    # By default Testcontainers uses the Docker daemon provided by the GitHub runner.
+    # Testcontainers Cloud is opt-in: set the repository variable
+    # USE_TESTCONTAINERS_CLOUD=true and provide the TC_CLOUD_TOKEN secret.
+    # (Fork / Dependabot PRs never receive the secret, so they always use the runner's Docker.)
     - name: Setup Testcontainers Cloud Client
-      if: ${{ env.TC_CLOUD_TOKEN != '' }}
+      if: ${{ vars.USE_TESTCONTAINERS_CLOUD == 'true' && env.TC_CLOUD_TOKEN != '' }}
       uses: atomicjar/testcontainers-cloud-setup-action@v1
       with:
         token: ${{ env.TC_CLOUD_TOKEN }}
