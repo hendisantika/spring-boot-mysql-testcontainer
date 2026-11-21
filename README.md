@@ -18,7 +18,7 @@ testing the persistence layer against a real MySQL database using [Testcontainer
 | Spring Boot      | 4.1.x   |
 | Testcontainers   | 2.x     |
 | JUnit Jupiter    | 6.x     |
-| MySQL            | 9.1.0   |
+| MySQL            | 9.1.0 (tests) / 26.10.0 (compose) |
 | Maven            | 3.8+    |
 
 Other libraries: Spring Data JPA, Spring MVC + Thymeleaf, Actuator, Lombok, WebJars (Bootstrap, Font Awesome).
@@ -50,7 +50,8 @@ src/test/java/com/hendisantika
 
 ## Running the Application
 
-The project contains a [`compose.yml`](compose.yml) with a MySQL 9.1.0 service. Thanks to
+The project contains a [`compose.yml`](compose.yml) with a MySQL 26.10.0 service exposed on host port **3308**
+(to avoid clashing with a MySQL server already listening on 3306). Thanks to
 `spring-boot-docker-compose`, the database is started automatically when you run the app:
 
 ```bash
@@ -61,6 +62,9 @@ Or start MySQL manually:
 
 ```bash
 docker compose up -d
+
+# connect from the host
+mysql -h127.0.0.1 -P3308 -uroot -p53cret heroesDB
 ```
 
 > Database data is stored in the local `mysql910/` folder (ignored by git).
