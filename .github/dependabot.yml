@@ -15,8 +15,8 @@ updates:
       - dependencies
       - java
     commit-message:
-      prefix: "chore(deps)"
-      prefix-development: "chore(deps-dev)"
+      prefix: "chore"
+      prefix-development: "chore"
       include: scope
     groups:
       spring-boot:
@@ -58,7 +58,7 @@ updates:
       - dependencies
       - github_actions
     commit-message:
-      prefix: "ci(deps)"
+      prefix: "ci"
       include: scope
     groups:
       github-actions:
@@ -81,5 +81,5 @@ updates:
       - dependencies
       - docker
     commit-message:
-      prefix: "chore(docker)"
+      prefix: "chore"
       include: scope

@@ -110,7 +110,7 @@ GitHub Actions workflow: [`.github/workflows/maven.yml`](.github/workflows/maven
 | Docker Compose  | weekly (Monday)       | images in `compose.yml`                                                  |
 
 PRs are labelled (`dependencies`, `java`, `github_actions`, `docker`) and use conventional commit prefixes
-(`chore(deps)`, `ci(deps)`, `chore(docker)`).
+(`chore(deps): ...`, `chore(deps-dev): ...`, `ci(deps): ...`).
 
 ## Author
 
