@@ -14,7 +14,7 @@
     <name>spring-boot-mysql-testcontainer</name>
     <description>spring-boot-mysql-testcontainer</description>
     <properties>
-        <java.version>21</java.version>
+        <java.version>25</java.version>
         <junit.jupiter.version>6.1.3</junit.jupiter.version>
         <testcontainers.version>2.0.5</testcontainers.version>
         <spring-boot.version>4.1.1</spring-boot.version>
@@ -178,8 +178,19 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.16.0</version>
                     <configuration>
-                        <source>${java.version}</source>
-                        <target>${java.version}</target>
+                        <release>${java.version}</release>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                            <path>
+                                <groupId>org.springframework.boot</groupId>
+                                <artifactId>spring-boot-configuration-processor</artifactId>
+                                <version>${spring-boot.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
                     </configuration>
                 </plugin>
                 <plugin>
