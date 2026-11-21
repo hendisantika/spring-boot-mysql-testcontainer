@@ -1,6 +1,6 @@
 services:
   db:
-    image: mysql:9.1.0
+    image: mysql:26.10.0
     container_name: mysql910
     ports:
       - "3306:3306"
